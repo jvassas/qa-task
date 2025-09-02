@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './playwright-tests',
   use: {
-    baseURL: 'http://localhost:5173/',
+    baseURL: `http://localhost:${process.env.PORT || 5173}/`,
     headless: false,
     trace: 'on-first-retry',
   },

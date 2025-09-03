@@ -4,7 +4,7 @@ export default defineConfig({
   testDir: './playwright-tests',
   use: {
     baseURL: `http://localhost:${process.env.PORT || 5173}/`,
-    headless: false,
+    headless: process.env.CI ? true : false,
     trace: 'on-first-retry',
   },
   projects: [

@@ -27,19 +27,21 @@ test.describe("Tic Tac Toe Game Regression Tests", () => {
       await gameUtils.playWinningGame("X");
       await expect(homePage.winnerMessage).toContainText("Winner: X");
       await homePage.clickSquare(5);
-      await expect(homePage.squares.nth(5)).toHaveText(""); //should be whatever the baord is
+      await expect(homePage.squares.nth(5)).toHaveText("");
     }
   );
 
-  test("should declare a draw when board is full with no winner", async ({
-    page,
-  }) => {
-    const homePage = new HomePage(page);
-    const gameUtils = new GameUtils(page, homePage);
-    await gameUtils.playDrawGame();
-    await expect(homePage.winnerMessage).not.toBeVisible();
-    await expect(homePage.nextPlayerHeader).toBeVisible();
-  });
+  test(
+    "should not show a winner when board is full with no winner",
+    { tag: "@regression" },
+    async ({ page }) => {
+      const homePage = new HomePage(page);
+      const gameUtils = new GameUtils(page, homePage);
+      await gameUtils.playDrawGame();
+      await expect(homePage.winnerMessage).not.toBeVisible();
+      await expect(homePage.nextPlayerHeader).toBeVisible();
+    }
+  );
 
   test(
     "all winning scenarios are detected",

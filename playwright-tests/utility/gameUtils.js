@@ -6,13 +6,13 @@ export class GameUtils {
     this.homePage = homePage;
   }
 
-  // Always the quick "top row win" (for smoke tests)
+  // Always the top row win
   async playWinningGame(player = "X") {
-    await this.homePage.clickSquare(0); // X
-    await this.homePage.clickSquare(3); // O
-    await this.homePage.clickSquare(1); // X
-    await this.homePage.clickSquare(4); // O
-    await this.homePage.clickSquare(2); // X → Wins
+    await this.homePage.clickSquare(0);
+    await this.homePage.clickSquare(3);
+    await this.homePage.clickSquare(1);
+    await this.homePage.clickSquare(4);
+    await this.homePage.clickSquare(2);
   }
 
   async playWinningCombo(combo, winner = "X") {

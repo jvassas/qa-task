@@ -15,7 +15,7 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
   );
 
   test(
-    "renders the next player header",
+    "should render the next player header",
     { tag: "@sanity" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -23,13 +23,17 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
     }
   );
 
-  test("renders the history header", { tag: "@sanity" }, async ({ page }) => {
-    const homePage = new HomePage(page);
-    await expect(homePage.historyHeader).toBeVisible();
-  });
+  test(
+    "should render the history header",
+    { tag: "@sanity" },
+    async ({ page }) => {
+      const homePage = new HomePage(page);
+      await expect(homePage.historyHeader).toBeVisible();
+    }
+  );
 
   test(
-    "renders the go to game start button",
+    "should render the go to game start button",
     { tag: "@sanity" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -38,7 +42,7 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
   );
 
   test(
-    "renders the go to reset button",
+    "should render the reset button",
     { tag: "@sanity" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -46,7 +50,7 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
     }
   );
 
-  test("renders the game board", { tag: "@sanity" }, async ({ page }) => {
+  test("should render the game board", { tag: "@sanity" }, async ({ page }) => {
     const homePage = new HomePage(page);
     await expect(homePage.squares).toHaveCount(9);
   });

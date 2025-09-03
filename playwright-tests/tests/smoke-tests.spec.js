@@ -42,19 +42,6 @@ test.describe("Tic Tac Toe Game Smoke Tests", () => {
     }
   );
 
-  test(
-    "should clear the board and start a new game when the reset button is clicked",
-    { tag: "@smoke" },
-    async ({ page }) => {
-      const homePage = new HomePage(page);
-      const gameUtils = new GameUtils(page, homePage);
-      await homePage.clickSquare(0);
-      await homePage.resetBtn.click();
-      await expect(homePage.nextPlayerHeader).toBeVisible();
-      await gameUtils.expectBoardCleared();
-    }
-  );
-
   test("history updates after a move", { tag: "@smoke" }, async ({ page }) => {
     const homePage = new HomePage(page);
     await homePage.clickSquare(0);

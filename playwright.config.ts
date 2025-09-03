@@ -2,6 +2,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './playwright-tests',
+  reporter: [['html', { outputFolder: 'playwright-report' }]],
   use: {
     baseURL: `http://localhost:${process.env.PORT || 5173}/`,
     headless: process.env.CI ? true : false,

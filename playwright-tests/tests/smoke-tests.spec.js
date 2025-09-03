@@ -7,20 +7,28 @@ test.describe("Tic Tac Toe Game Smoke Tests", () => {
     await page.goto("/");
   });
 
-  test("player can make a move", { tag: "@smoke" }, async ({ page }) => {
-    const homePage = new HomePage(page);
-    await homePage.clickSquare(0);
-    await expect(homePage.squares.nth(0)).toHaveText("X");
-  });
-
-  test("player can click all squares", { tag: "@smoke" }, async ({ page }) => {
-    const homePage = new HomePage(page);
-    const gameUtils = new GameUtils(page, homePage);
-    await gameUtils.clickAllSquaresWithReset();
-  });
+  test(
+    "Verify a player can make a move",
+    { tag: "@smoke" },
+    async ({ page }) => {
+      const homePage = new HomePage(page);
+      await homePage.clickSquare(0);
+      await expect(homePage.squares.nth(0)).toHaveText("X");
+    }
+  );
 
   test(
-    "should alternate turns between player X and player O",
+    "Verify a player can click all squares",
+    { tag: "@smoke" },
+    async ({ page }) => {
+      const homePage = new HomePage(page);
+      const gameUtils = new GameUtils(page, homePage);
+      await gameUtils.clickAllSquaresWithReset();
+    }
+  );
+
+  test(
+    "Verify the game alternates turns between player X and player O",
     { tag: "@smoke" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -32,7 +40,7 @@ test.describe("Tic Tac Toe Game Smoke Tests", () => {
   );
 
   test(
-    "game detects a winning combination",
+    "Verify game detects a winning combination",
     { tag: "@smoke" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -42,14 +50,18 @@ test.describe("Tic Tac Toe Game Smoke Tests", () => {
     }
   );
 
-  test("history updates after a move", { tag: "@smoke" }, async ({ page }) => {
-    const homePage = new HomePage(page);
-    await homePage.clickSquare(0);
-    await expect(homePage.historyItems).toHaveCount(1);
-  });
+  test(
+    "Verify history updates after a move",
+    { tag: "@smoke" },
+    async ({ page }) => {
+      const homePage = new HomePage(page);
+      await homePage.clickSquare(0);
+      await expect(homePage.historyItems).toHaveCount(1);
+    }
+  );
 
   test(
-    "history updates after multiple moves",
+    "Verify history updates after multiple moves",
     { tag: "@smoke" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -60,7 +72,7 @@ test.describe("Tic Tac Toe Game Smoke Tests", () => {
   );
 
   test(
-    "navigate back to a previous move works",
+    "Verify navigation to a previous move works",
     { tag: "@smoke" },
     async ({ page }) => {
       const homePage = new HomePage(page);

@@ -28,13 +28,10 @@ export class GameUtils {
     // Build the exact sequence of moves
     let moves = [];
 
-    if (winner === "X") {
-      // Winner starts first
-      moves = [combo[0], filler1, combo[1], filler2, combo[2]];
-    } else {
-      // Opponent starts first, so winner ends up last
-      moves = [filler1, combo[0], filler2, combo[1], combo[2]];
-    }
+    moves =
+      winner === "X"
+        ? [combo[0], filler1, combo[1], filler2, combo[2]]
+        : [filler1, combo[0], filler2, combo[1], combo[2]];
 
     // Play the moves in order
     for (const square of moves) {

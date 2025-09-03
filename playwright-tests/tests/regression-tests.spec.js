@@ -8,7 +8,7 @@ test.describe("Tic Tac Toe Game Regression Tests", () => {
   });
 
   test(
-    "a square cannot be played twice",
+    "Verify a square cannot be played twice",
     { tag: "@regression" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -19,7 +19,7 @@ test.describe("Tic Tac Toe Game Regression Tests", () => {
   );
 
   test(
-    "no moves allowed after a win",
+    "Verify no other moves are allowed after a win",
     { tag: "@regression" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -32,7 +32,7 @@ test.describe("Tic Tac Toe Game Regression Tests", () => {
   );
 
   test(
-    "should not show a winner when board is full with no winner",
+    "Verify a winner does not display when a draw occurs",
     { tag: "@regression" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -44,7 +44,7 @@ test.describe("Tic Tac Toe Game Regression Tests", () => {
   );
 
   test(
-    "all winning scenarios are detected",
+    "Verify all winning scenarios are detected",
     { tag: "@regression" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -70,20 +70,31 @@ test.describe("Tic Tac Toe Game Regression Tests", () => {
   );
 
   test(
-    "reset clears history as well as board",
+    "Verify reset button clears the history",
     { tag: "@regression" },
     async ({ page }) => {
       const homePage = new HomePage(page);
       const gameUtils = new GameUtils(page, homePage);
-      await homePage.clickSquare(0);
+      await gameUtils.clickMultipleSquaresNoWinner();
       await homePage.resetBtn.click();
       await expect(homePage.historyItems).not.toBeVisible();
+    }
+  );
+
+  test(
+    "Verify reset button clears the game board",
+    { tag: "@regression" },
+    async ({ page }) => {
+      const homePage = new HomePage(page);
+      const gameUtils = new GameUtils(page, homePage);
+      await gameUtils.clickMultipleSquaresNoWinner();
+      await homePage.resetBtn.click();
       await gameUtils.expectBoardCleared();
     }
   );
 
   test(
-    "going back in history updates current player correctly",
+    "Verify going back in history updates current player correctly",
     { tag: "@regression" },
     async ({ page }) => {
       const homePage = new HomePage(page);

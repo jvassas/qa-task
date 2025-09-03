@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { HomePage } from "../pages/homePage";
+import { GameUtils } from "../utility/gameUtils";
 
 test.describe("Tic Tac Toe Game Sanity Tests", () => {
   test.beforeEach(async ({ page }) => {
@@ -7,7 +8,7 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
   });
 
   test(
-    "should have the correct page title",
+    "Verify the page has the correct title",
     { tag: "@sanity" },
     async ({ page }) => {
       await expect(page).toHaveTitle("Tic-Tac-Toe");
@@ -15,7 +16,7 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
   );
 
   test(
-    "should render the next player header",
+    "Verify the next player header renders",
     { tag: "@sanity" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -24,7 +25,7 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
   );
 
   test(
-    "should render the history header",
+    "Verify the history header renders",
     { tag: "@sanity" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -33,7 +34,7 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
   );
 
   test(
-    "should render the go to game start button",
+    "Verify the game start button renders",
     { tag: "@sanity" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -42,7 +43,7 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
   );
 
   test(
-    "should render the reset button",
+    "Verify the reset button renders",
     { tag: "@sanity" },
     async ({ page }) => {
       const homePage = new HomePage(page);
@@ -50,8 +51,22 @@ test.describe("Tic Tac Toe Game Sanity Tests", () => {
     }
   );
 
-  test("should render the game board", { tag: "@sanity" }, async ({ page }) => {
-    const homePage = new HomePage(page);
-    await expect(homePage.squares).toHaveCount(9);
-  });
+  test(
+    "Verify the game board renders",
+    { tag: "@sanity" },
+    async ({ page }) => {
+      const homePage = new HomePage(page);
+      await expect(homePage.squares).toHaveCount(9);
+    }
+  );
+
+  test(
+    "Verify the game board is empty on page load",
+    { tag: "@sanity" },
+    async ({ page }) => {
+      const homePage = new HomePage(page);
+      const gameUtils = new GameUtils(page, homePage);
+      await gameUtils.expectBoardCleared();
+    }
+  );
 });
